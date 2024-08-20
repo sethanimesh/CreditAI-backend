@@ -23,7 +23,7 @@ public class UserService {
         UserProfile user = new UserProfile();
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword()); // Hash the password
+        user.setPassword(userDTO.getPassword()); 
         user.setStatus("ACTIVE"); // Default status
 
         // Save user to the database

@@ -25,12 +25,6 @@ public class UserProfile {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = true)
-    private String firstName;
-
-    @Column(nullable = true)
-    private String lastName;
-
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -40,15 +34,13 @@ public class UserProfile {
     @Column(nullable = false)
     private String status = "ACTIVE";
 
-	public UserProfile(Long id, String username, String email, String password, String firstName, String lastName,
+	public UserProfile(Long id, String username, String email, String password,
 			LocalDateTime createdAt, LocalDateTime updatedAt, String status) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.status = status;
@@ -88,22 +80,6 @@ public class UserProfile {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public LocalDateTime getCreatedAt() {
