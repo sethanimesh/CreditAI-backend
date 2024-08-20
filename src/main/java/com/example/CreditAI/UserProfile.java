@@ -54,6 +54,10 @@ public class UserProfile {
 		this.status = status;
 	}
 
+	public UserProfile() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}
