@@ -25,12 +25,12 @@ public class AuthController {
     private UserProfileRepository userProfileRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@Valid @RequestBody UserRegistrationDTO userDTO) {
+    public ResponseEntity<RegisterResponse> registerUser(@Valid @RequestBody UserRegistrationDTO userDTO) {
         try {
             UserProfile registeredUser = userService.registerNewUser(userDTO);
-            return ResponseEntity.ok("User registered successfully with username: " + registeredUser.getUsername());
+            return ResponseEntity.ok(new RegisterResponse("User registered successfully", registeredUser.getUsername()));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(new RegisterResponse(e.getMessage(), null));
         }
     }
     
