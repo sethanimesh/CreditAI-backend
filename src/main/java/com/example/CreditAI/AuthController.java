@@ -38,19 +38,20 @@ public class AuthController {
     }
     
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
         Optional<UserProfile> userOptional = userProfileRepository.findByUsername(loginRequest.getUsername());
 
         if (userOptional.isPresent()) {
             UserProfile user = userOptional.get();
 
             if (user.getPassword().equals(loginRequest.getPassword())) {
-                return ResponseEntity.ok("Login successful. Welcome, " + user.getUsername() + "!");
+                // You might also want to return a JWT token or user details here
+                return ResponseEntity.ok(new LoginResponse("Login successful", user.getUsername()));
             } else {
-                return ResponseEntity.badRequest().body("Invalid password. Please try again.");
+                return ResponseEntity.badRequest().body(new LoginResponse("Invalid password", null));
             }
         } else {
-            return ResponseEntity.badRequest().body("Username not found. Please try again.");
+            return ResponseEntity.badRequest().body(new LoginResponse("Username not found", null));
         }
     }
 }
